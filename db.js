@@ -22,5 +22,9 @@ pool.query("create table users (id serial primary key,userid text unique, first_
     console.log(err, res);
     // pool.end();
 });
+pool.query("create table tasks (id serial primary key,user_id text unique, task_id text unique, task_name text, description text, completed boolean not null, start_time time not null, end_time time not null);", (err, res) => {
+    console.log(err, res);
+    // pool.end();
+});
 
 module.exports = pool;

@@ -5,6 +5,7 @@ const db = require('./db');
 const bodyParser = require('body-parser');
 
 const userRoute = require('./api/routes/user');
+const taskRoute = require('./api/routes/task');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,7 +24,9 @@ app.use((req, res, next) => {
     next();
 });
 
+//Routes
 app.use('/user', userRoute);
+app.use('/task', taskRoute);
 
 app.use((req, res, next) => {
     const error = new Error('Not Found');
