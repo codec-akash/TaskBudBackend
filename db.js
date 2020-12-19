@@ -14,7 +14,7 @@ const pool = new Pool({
     connectionString: process.env.DATABASE_URL
 });
 
-pool.query("create table users (id serial primary key,user_id text unique, first_name text, last_name text, email text unique not null, password text, phonenumber text unique, actuall_password text)", (err, res) => {
+pool.query("create table users (id serial primary key,userid text unique, first_name text, last_name text, email text unique not null, password text, phonenumber text unique, actuall_password text)", (err, res) => {
     console.log(err, res);
     // pool.end();
 });
