@@ -16,7 +16,7 @@ const pool = new Pool({
 
 pool.query("create table users (id serial primary key,user_id text unique, first_name text, last_name text, email text unique not null, password text, phonenumber text unique, actuall_password text)", (err, res) => {
     console.log(err, res);
-    pool.end();
+    // pool.end();
 });
 
-// module.exports = pool;
+module.exports = pool;
