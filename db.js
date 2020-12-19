@@ -19,4 +19,4 @@ pool.query("create table users (id serial primary key,user_id text unique, first
     pool.end();
 });
 
-module.exports = pool;
+// module.exports = pool;
