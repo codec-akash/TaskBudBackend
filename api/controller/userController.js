@@ -51,7 +51,7 @@ exports.register = (req, res, next) => {
                 const token = jwt.sign({
                     email: email,
                     userid: userid
-                }, process.env.SECERTKEY, { expiresIn: "2h" });
+                }, process.env.SECERTKEY);
                 db.query(sqlQuery, [userid, first_name, last_name, email, password, phonenumber, actuall_password], (err, result) => {
                     if (err) {
                         res.status(500).json({
@@ -92,7 +92,7 @@ exports.loginUser = (req, res, next) => {
                     const token = jwt.sign({
                         email: result.rows[0].email,
                         userid: result.rows[0].userid
-                    }, process.env.SECERTKEY, { expiresIn: "2h" });
+                    }, process.env.SECERTKEY);
                     res.status(200).json({
                         message: "Success",
                         token: token

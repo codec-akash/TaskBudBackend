@@ -12,7 +12,7 @@ methods.getAuthUser = function (req) {
             if (err) {
                 let errordata = {
                     message: err.message,
-                    expiredAt: err.expiredAt
+                    // expiredAt: err.expiredAt
                 };
                 console.log(errordata);
                 return res.status(401).json({
