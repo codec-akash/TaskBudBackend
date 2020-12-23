@@ -26,13 +26,5 @@ pool.query("create table IF NOT EXISTS tasks (id serial primary key,userid text 
     console.log(err, res);
     // pool.end();
 });
-pool.query("ALTER TABLE tasks ALTER COLUMN start_time TYPE TEXT", (err, res) => {
-    console.log(err, res);
-    // pool.end();
-});
-pool.query("ALTER TABLE tasks ALTER COLUMN end_time TYPE TEXT", (err, res) => {
-    console.log(err, res);
-    // pool.end();
-});
 
 module.exports = pool;
