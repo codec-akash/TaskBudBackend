@@ -9,4 +9,6 @@ router.post('/addTask', check_auth, taskController.addTask);
 
 router.get("/", check_auth, taskController.getUserTask);
 
+router.put("/:taskId", check_auth, taskController.updateTask);
+
 module.exports = router;

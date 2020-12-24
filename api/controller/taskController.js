@@ -1,3 +1,4 @@
+const e = require('express');
 const db = require('../database/index')
 const gAuth = require('../middleware/getAuth');
 
@@ -52,3 +53,30 @@ exports.getUserTask = (req, res, next) => {
         });
     }
 };
+
+exports.updateTask = (req, res, next) => {
+    var userid = gAuth.getAuthUser(req);
+    let sqlQuery = "UPDATE tasks SET task_name = $1,description = $2, completed = $3,start_time = $4,end_time = $5 where task_id = $6";
+    var { task_name, description, completed, start_time, end_time } = req.body;
+    const { taskId } = req.params;
+    try {
+        db.query(sqlQuery, [task_name, description, completed, start_time, end_time, taskId], (err, result) => {
+            if (err) {
+                res.status(500).json({
+                    message: err.message
+                });
+            }
+            else if (result.rowCount != 1) {
+                res.status(404).json({
+                    "message": "No such Task",
+                });
+            } else {
+                res.status(200).json({
+                    message: "Success"
+                });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({});
+    }
+}
