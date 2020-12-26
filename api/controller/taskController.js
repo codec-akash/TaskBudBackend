@@ -80,3 +80,23 @@ exports.updateTask = (req, res, next) => {
         res.status(500).json({});
     }
 }
+
+exports.deleteTask = (req, res, next) => {
+    const { taskId } = req.params;
+    let sqlQuery = "DELETE FROM tasks WHERE task_id = $1";
+    try {
+        db.query(sqlQuery, [taskId], (err, result) => {
+            if (err) {
+                res.status(400).json({
+                    message: err
+                });
+            } else {
+                res.status(200).json({
+                    message: "Success"
+                });
+            }
+        });
+    } catch (err) {
+        res.status(500).json({});
+    }
+}

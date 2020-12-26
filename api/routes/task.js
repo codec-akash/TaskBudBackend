@@ -11,4 +11,6 @@ router.get("/", check_auth, taskController.getUserTask);
 
 router.put("/:taskId", check_auth, taskController.updateTask);
 
+router.delete("/:taskId", check_auth, taskController.deleteTask);
+
 module.exports = router;
