@@ -3,6 +3,8 @@ const db = require('../database/index');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const gAuth = require('../middleware/getAuth');
+
 // exports.getAllUser = async (req, res, next) => {
 //     try {
 //         const allTodos = await db.query("SELECT * from users");
@@ -106,3 +108,59 @@ exports.loginUser = (req, res, next) => {
         }
     });
 };
+
+exports.updatePassword = (req, res, next) => {
+    var { oldPassword, password } = req.body;
+    var userid = gAuth.getAuthUser(req);
+
+    let getuserQuery = "SELECT password from users where userid = $1";
+
+    try {
+        db.query(getuserQuery, [userid], (err, result) => {
+            if (err) {
+                res.status(500).json({
+                    "message": "Error Occurred",
+                });
+            } else {
+                bcrypt.compare(oldPassword, result.rows[0].password, (err, bcryptres) => {
+                    if (err) {
+                        res.status(403).json({
+                            message: "Password does not matches"
+                        })
+                    } else if (bcryptres) {
+                        bcrypt.hash(password, 10, (err, hash) => {
+                            if (err) {
+                                throw err
+                            }
+                            var actuall_password = password;
+                            password = hash;
+                            let data = [password, actuall_password];
+                            let sqlQuery = "UPDATE users SET password = $1, actuall_password = $2 where userid = $3 ";
+                            db.query(sqlQuery, [password, actuall_password, userid], (err, finalResult) => {
+                                if (err) {
+                                    res.status(500).json({
+                                        message: "Failed to update password"
+                                    });
+                                } else {
+                                    res.status(200).json({
+                                        message: "Password Updated"
+                                    });
+                                }
+                            })
+                        });
+                    } else {
+                        res.status(403).json({
+                            message: "Old Password does not matches"
+                        })
+                    }
+                });
+            }
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: error
+        });
+    }
+
+}
