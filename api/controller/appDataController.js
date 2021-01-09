@@ -24,7 +24,8 @@ exports.getAppData = (req, res, next) => {
 exports.updateAppData = (req, res, next) => {
     try {
         let sqlQuery = "UPDATE appData SET minAppVersion = $1, latestAppVersion = $2, updatedAt = $3";
-        const { minAppVersion, latestAppVersion, updatedAt } = req.body;
+        const { minAppVersion, latestAppVersion } = req.body;
+        var updatedAt = new Date().toLocaleString();
 
         db.query(sqlQuery, [minAppVersion, latestAppVersion, updatedAt], (err, result) => {
             if (err) {
@@ -48,7 +49,8 @@ exports.updateAppData = (req, res, next) => {
 exports.addAppData = (req, res, next) => {
     try {
         let sqlQuery = "INSERT INTO appData (minAppVersion, latestAppVersion, updatedAt) VALUES ($1,$2,$3) returning *";
-        const { minAppVersion, latestAppVersion, updatedAt } = req.body;
+        const { minAppVersion, latestAppVersion } = req.body;
+        var updatedAt = new Date().toLocaleString();
 
         db.query(sqlQuery, [minAppVersion, latestAppVersion, updatedAt], (err, result) => {
             if (err) {
