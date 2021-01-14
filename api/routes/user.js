@@ -13,4 +13,6 @@ router.post('/login', userController.loginUser);
 
 router.patch('/resetPassword', check_auth, userController.updatePassword);
 
+router.patch('/forgotPassword', userController.forgotPassword);
+
 module.exports = router;

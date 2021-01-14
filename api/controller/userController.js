@@ -164,3 +164,35 @@ exports.updatePassword = (req, res, next) => {
     }
 
 }
+
+exports.forgotPassword = (req, res, next) => {
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: '',
+            pass: ''
+        }
+    });
+
+    var mailOptions = {
+        from: 'akashrdubey@yahoo.in',
+        to: 'akashrdubey19@gmail.com',
+        subject: 'Test 1',
+        text: 'HeloWorld',
+    };
+
+    transporter.sendMail(mailOptions, function (err, info) {
+        if (err) {
+            console.log(err);
+            res.status(200).json({
+                message: "Error pass userid does not match",
+                error: err
+            })
+        } else {
+            console.log('Email sent: ' + info.response);
+            res.status(200).json({ message: "Mail Sent" });
+        }
+    });
+};

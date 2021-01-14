@@ -8,7 +8,6 @@ exports.getAppData = (req, res, next) => {
                     message: err
                 });
             } else {
-                const { showResult } = result.rows;
                 res.status(200).json(
                     result.rows[0]
                 );
