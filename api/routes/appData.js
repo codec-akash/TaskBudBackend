@@ -6,7 +6,7 @@ const appDataController = require('../controller/appDataController');
 
 router.get('/', appDataController.getAppData);
 
-router.post('/', appDataController.addAppData);
+// router.post('/', appDataController.addAppData);
 
 router.patch('/', appDataController.updateAppData);
 
