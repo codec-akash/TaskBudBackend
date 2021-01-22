@@ -32,4 +32,13 @@ pool.query("create table IF NOT EXISTS appData (id serial primary key, minAppVer
     // pool.end();
 });
 
+pool.query("alter table tasks alter end_time type Date using(end_time::date)", (err, res) => {
+    console.log(err, res);
+    // pool.end();
+});
+pool.query("alter table tasks alter start_time type Date using(start_time::date)", (err, res) => {
+    console.log(err, res);
+    // pool.end();
+});
+
 module.exports = pool;
