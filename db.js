@@ -32,14 +32,16 @@ const pool = new Pool({
 //     // pool.end();
 // });
 
-// pool.query("alter table tasks alter end_time type Date using(end_time::date)", (err, res) => {
-//     console.log(err, res);
-//     // pool.end();
-// });
-// pool.query("alter table tasks alter start_time type Date using(start_time::date)", (err, res) => {
-//     console.log(err, res);
-//     // pool.end();
-// });
+//Changed Data type of date from text to date.
+pool.query("alter table tasks alter end_time type Date using(end_time::date)", (err, res) => {
+    console.log(err, res);
+    // pool.end();
+});
+pool.query("alter table tasks alter start_time type Date using(start_time::date)", (err, res) => {
+    console.log(err, res);
+    // pool.end();
+});
+
 
 // pool.query("ALTER TABLE tasks ADD COLUMN category text", (err, res) => {
 //     console.log(err, res);
