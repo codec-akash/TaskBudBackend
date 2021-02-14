@@ -41,4 +41,8 @@ pool.query("alter table tasks alter start_time type Date using(start_time::date)
     // pool.end();
 });
 
+pool.query("ALTER TABLE tasks ADD COLUMN category text", (err, res) => {
+    console.log(err, res);
+});
+
 module.exports = pool;
