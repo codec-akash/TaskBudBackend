@@ -18,31 +18,31 @@ const pool = new Pool({
 //     console.log(err, res);
 //     // pool.end();
 // });
-pool.query("create table IF NOT EXISTS users (id serial primary key,userid text unique, first_name text, last_name text, email text unique not null, password text, phonenumber text unique, actuall_password text)", (err, res) => {
-    console.log(err, res);
-    // pool.end();
-});
-pool.query("create table IF NOT EXISTS tasks (id serial primary key,userid text not null, task_id text unique not null, task_name text, description text, completed boolean not null, start_time time not null, end_time time not null)", (err, res) => {
-    console.log(err, res);
-    // pool.end();
-});
+// pool.query("create table IF NOT EXISTS users (id serial primary key,userid text unique, first_name text, last_name text, email text unique not null, password text, phonenumber text unique, actuall_password text)", (err, res) => {
+//     console.log(err, res);
+//     // pool.end();
+// });
+// pool.query("create table IF NOT EXISTS tasks (id serial primary key,userid text not null, task_id text unique not null, task_name text, description text, completed boolean not null, start_time time not null, end_time time not null)", (err, res) => {
+//     console.log(err, res);
+//     // pool.end();
+// });
 
-pool.query("create table IF NOT EXISTS appData (id serial primary key, minAppVersion text not null, latestAppVersion text not null, updatedAt text not null)", (err, res) => {
-    console.log(err, res);
-    // pool.end();
-});
+// pool.query("create table IF NOT EXISTS appData (id serial primary key, minAppVersion text not null, latestAppVersion text not null, updatedAt text not null)", (err, res) => {
+//     console.log(err, res);
+//     // pool.end();
+// });
 
-pool.query("alter table tasks alter end_time type Date using(end_time::date)", (err, res) => {
-    console.log(err, res);
-    // pool.end();
-});
-pool.query("alter table tasks alter start_time type Date using(start_time::date)", (err, res) => {
-    console.log(err, res);
-    // pool.end();
-});
+// pool.query("alter table tasks alter end_time type Date using(end_time::date)", (err, res) => {
+//     console.log(err, res);
+//     // pool.end();
+// });
+// pool.query("alter table tasks alter start_time type Date using(start_time::date)", (err, res) => {
+//     console.log(err, res);
+//     // pool.end();
+// });
 
-pool.query("ALTER TABLE tasks ADD COLUMN category text", (err, res) => {
-    console.log(err, res);
-});
+// pool.query("ALTER TABLE tasks ADD COLUMN category text", (err, res) => {
+//     console.log(err, res);
+// });
 
 module.exports = pool;
