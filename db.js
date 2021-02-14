@@ -33,6 +33,7 @@ const pool = new Pool({
 // });
 
 //Changed Data type of date from text to date.
+//update removed all invalid date
 pool.query("alter table tasks alter end_time type Date using(end_time::date)", (err, res) => {
     console.log(err, res);
     // pool.end();
