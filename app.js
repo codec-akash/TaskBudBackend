@@ -9,8 +9,8 @@ const taskRoute = require('./api/routes/task');
 const appDataRoute = require('./api/routes/appData');
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
